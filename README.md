@@ -1,6 +1,9 @@
 ### map bali covid 19
 author: I Kadek Teguh Mahesa
 
+### status
+on progress
+
 ### technology
 - React JS
 - React Router DOM
