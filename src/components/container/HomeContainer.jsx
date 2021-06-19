@@ -23,8 +23,6 @@ const HomeContainer = () => {
         getData();
     }, []);
 
-    console.log(data);
-
     return (
         <div>
             <MapContainer center={[-8.409518, 115.188919]} zoom={10} style={{ height: '100vh' }}>
