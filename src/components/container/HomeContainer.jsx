@@ -32,12 +32,6 @@ const HomeContainer = () => {
                 />
                 <GeoJSON data={DataMapBali.features} />
 
-                <Marker position={[-8.792408, 115.215159]} icon={MarkerIcon}>
-                        <Popup>
-                            kubu wake
-                        </Popup>
-                </Marker>
-
                 {data.map((info, i) => (
                     <Marker key={i} position={[info.latitude, info.longitude]} icon={MarkerIcon}>
                         <Popup>
