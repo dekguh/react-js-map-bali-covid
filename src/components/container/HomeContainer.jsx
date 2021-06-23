@@ -20,7 +20,7 @@ const HomeContainer = () => {
 
     useEffect(() => {
         const fecthDataCovid = async () => {
-            const response = await axios.get('http://localhost:1337/data-covids');
+            const response = await axios.get('https://afternoon-taiga-61459.herokuapp.com/data-covids');
             const result = response.data;
             setData(result);
         }
