@@ -10,7 +10,7 @@ import { io } from 'socket.io-client';
 const HomeContainer = () => {
     const [data, setData] = useState([]);
     const [dataSocket, setDataSocket] = useState([]);
-    const socket = io('ws://afternoon-taiga-61459.herokuapp.com', {transports: ['websocket']});
+    const socket = io('wss://afternoon-taiga-61459.herokuapp.com', {transports: ['websocket']});
 
     socket.on('data_map_ready', (result) => {
         setDataSocket(result)
