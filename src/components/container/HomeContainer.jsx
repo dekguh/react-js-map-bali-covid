@@ -16,8 +16,6 @@ const HomeContainer = () => {
         setDataSocket(result)
     })
 
-    console.log(dataSocket)
-
     useEffect(() => {
         const fecthDataCovid = async () => {
             const response = await axios.get('https://afternoon-taiga-61459.herokuapp.com/data-covids');
