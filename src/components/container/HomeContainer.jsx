@@ -5,23 +5,32 @@ import MarkerIcon from '../utils/MarkerIcon';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
+import { io } from 'socket.io-client';
 
 const HomeContainer = () => {
     const [data, setData] = useState([]);
+    const [dataSocket, setDataSocket] = useState([]);
+    const socket = io('ws://afternoon-taiga-61459.herokuapp.com', {transports: ['websocket']});
+
+    socket.on('data_map_ready', (result) => {
+        setDataSocket(result)
+    })
+
+    console.log(dataSocket)
 
     useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get("https://afternoon-taiga-61459.herokuapp.com/data-covids");
-                const result = response.data;
-                setData(result);
-            } catch(err) {
-                setData([]);
-            }
+        const fecthDataCovid = async () => {
+            const response = await axios.get('http://localhost:1337/data-covids');
+            const result = response.data;
+            setData(result);
         }
 
-        getData();
-    }, []);
+        fecthDataCovid();
+    }, [])
+
+    useEffect(() => {
+        setData(dataSocket);
+    }, [dataSocket]);
 
     return (
         <div>
@@ -32,7 +41,7 @@ const HomeContainer = () => {
                 />
                 <GeoJSON data={DataMapBali.features} />
 
-                {data.map((info, i) => (
+                {data?.length >= 1 && data.map((info, i) => (
                     <Marker key={i} position={[info.latitude, info.longitude]} icon={MarkerIcon}>
                         <Popup>
                             <Table>
